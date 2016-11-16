@@ -1,0 +1,23 @@
+<div>
+  <div>
+    <input #dieNum
+      (keyup)='diceCount=dieNum.value'
+      placeholder='Die Number'>How Many Dice?
+    <input #dieSides
+      (keyup)="sides=dieSides.value"
+      placeholder="Die Sides">How Many Sides?
+  </div>
+
+  <div>
+    <button *ngIf='sides && diceCount'
+      (click)="rand=roll(diceCount, sides)">Roll</button>
+    <div *ngIf='rand'>
+      <p>
+        {{rand}}
+      </p>
+      <p>
+        TOTAL: {{ sumDice(rand) }}
+      </p>
+    </div>
+  </div>
+</div>
