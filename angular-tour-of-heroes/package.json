@@ -35,7 +35,7 @@
     "@angular/router": "~3.1.2",
     "@angular/upgrade": "~2.1.2",
 
-    "angular-in-memory-web-api": "~0.1.13",
+    "angular-in-memory-web-api": "=0.1.13",
     "systemjs": "0.19.40",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.8",
@@ -62,7 +62,6 @@
     "webdriver-manager": "10.2.5",
     "rimraf": "^2.5.4",
 
-    "@types/core-js": "^0.9.34",
     "@types/node": "^6.0.46",
     "@types/jasmine": "^2.5.36",
     "@types/selenium-webdriver": "^2.53.33"

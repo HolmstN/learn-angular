@@ -8,29 +8,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var common_1 = require("@angular/common");
-var hero_service_1 = require("./hero.service");
-var HeroDetailComponent = (function () {
-    function HeroDetailComponent(heroService, route, location) {
+require("rxjs/add/operator/switchMap");
+const core_1 = require("@angular/core");
+const router_1 = require("@angular/router");
+const common_1 = require("@angular/common");
+const hero_service_1 = require("./hero.service");
+let HeroDetailComponent = class HeroDetailComponent {
+    constructor(heroService, route, location) {
         this.heroService = heroService;
         this.route = route;
         this.location = location;
     }
-    HeroDetailComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.route.params.forEach(function (params) {
-            var id = +params['id'];
-            _this.heroService.getHero(id)
-                .then(function (hero) { return _this.hero = hero; });
-        });
-    };
-    HeroDetailComponent.prototype.goBack = function () {
+    ngOnInit() {
+        this.route.params
+            .switchMap((params) => this.heroService.getHero(+params['id']))
+            .subscribe(hero => this.hero = hero);
+    }
+    goBack() {
         this.location.back();
-    };
-    return HeroDetailComponent;
-}());
+    }
+    save() {
+        this.heroService.update(this.hero)
+            .then(() => this.goBack());
+    }
+};
 HeroDetailComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
